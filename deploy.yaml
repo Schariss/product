@@ -2,8 +2,6 @@ kind: Service
 apiVersion: v1
 metadata:
   name: product-api
-  labels:
-    app: product-api
 spec:
   selector:
     app: product-api
@@ -12,7 +10,6 @@ spec:
       name: http
       port: 9090
       targetPort: 9090
-  type: ClusterIP
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -33,6 +30,6 @@ spec:
       containers:
         - name: product-api
           image: evato/product-api
-          imagePullPolicy: Never
+          imagePullPolicy: Always
           ports:
             - containerPort: 9090
